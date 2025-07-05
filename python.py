@@ -11,5 +11,5 @@ d = sum(range(i, z + 100))
 
 z = d
 
-
+print(z)
 
