@@ -1,4 +1,15 @@
-def mlo(p):
-    print( p * 99)
+i = 0
+try:
+    if z != 0:
+        z = z
+    else:
+        z = 0
+except:
+    z = 0
 
-mlo(90)
+d = sum(range(i, z + 100))
+
+z = d
+
+
+
