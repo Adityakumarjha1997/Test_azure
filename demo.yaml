@@ -10,8 +10,10 @@ spec:
         - /bin/bash
         - -c
         - |
-          pip install pyspark &&
-          curl -O https://raw.githubusercontent.com/example-user/spark-scripts/main/pyspark_demo.py &&
-          python pyspark_demo.py
+          apt-get update && \
+          apt-get install -y curl && \
+          pip install --upgrade pip && \
+          pip install pyspark && \
+          curl -O https://raw.githubusercontent.com/Adityakumarjha1997/Test_azure/main/python.py && \
+          python python.py && \
           sleep infinity
-
