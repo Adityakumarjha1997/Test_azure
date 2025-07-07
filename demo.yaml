@@ -1,27 +1,17 @@
-apiVersion: sparkoperator.k8s.io/v1beta2
-kind: SparkApplication
+apiVersion: v1
+kind: Pod
 metadata:
-  name: etl-adls-job
-  namespace: spark-jobs
+  name: pyspark-runner
 spec:
-  type: Python
-  mode: cluster
-  image: apache/spark-py:3.4.0
-  imagePullPolicy: IfNotPresent
-  mainApplicationFile: "abfss://<container>@<account>.dfs.core.windows.net/scripts/etl_job.py"
-  sparkVersion: "3.4.0"
-  restartPolicy:
-    type: OnFailure
-    onFailureRetries: 3
-    onFailureRetryInterval: 10
-  driver:
-    cores: 1
-    memory: "1g"
-    serviceAccount: spark
-  executor:
-    cores: 1
-    instances: 2
-    memory: "1.5g"
-  sparkConf:
-    "fs.azure.account.auth.type.<account>.dfs.core.windows.net": "SharedKey"
-    "fs.azure.account.key.<account>.dfs.core.windows.net": "<your-storage-key>"
+  containers:
+    - name: pyspark
+      image: python:3.12-slim
+      command:
+        - /bin/bash
+        - -c
+        - |
+          pip install pyspark &&
+          curl -O https://raw.githubusercontent.com/example-user/spark-scripts/main/pyspark_demo.py &&
+          python pyspark_demo.py
+          sleep infinity
+
