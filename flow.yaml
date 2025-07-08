@@ -1,0 +1,25 @@
+# airflow-vsalues.yaml
+executor: KubernetesExecutor
+
+webserver:
+  service:
+    type: NodePort
+  defaultUser:
+    enabled: true
+    username: admin
+    password: admin
+
+dags:
+  persistence:
+    enabled: true
+    storageClassName: standard
+    accessMode: ReadWriteOnce
+    size: 1Gi
+
+logs:
+  persistence:
+    enabled: false
+
+postgresql:
+  enabled: true
+
