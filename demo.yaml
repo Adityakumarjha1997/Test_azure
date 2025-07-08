@@ -6,14 +6,17 @@ spec:
   containers:
     - name: pyspark
       image: python:3.12-slim
-      command:
+      command: 
         - /bin/bash
         - -c
         - |
           apt-get update && \
-          apt-get install -y curl && \
+          apt-get install -y curl openjdk-17-jdk && \
+          export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64 && \
+          export PATH=$JAVA_HOME/bin:$PATH && \
           pip install --upgrade pip && \
           pip install pyspark && \
           curl -O https://raw.githubusercontent.com/Adityakumarjha1997/Test_azure/main/python.py && \
           python python.py && \
           sleep infinity
+
